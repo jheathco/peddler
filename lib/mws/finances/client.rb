@@ -12,8 +12,8 @@ module MWS
       # @see http://docs.developer.amazonservices.com/en_US/finances/Finances_ListFinancialEvents.html
       # @param opts [Hash]
       # @option opts [Integer] :max_results_per_page
-      # @option opts [Array<String>, String] :amazon_order_id
-      # @option opts [Array<String>, String] :financial_event_group_id      
+      # @option opts [String] :amazon_order_id
+      # @option opts [String] :financial_event_group_id      
       # @option opts [String, #iso8601] :posted_after
       # @option opts [String, #iso8601] :posted_before
       # @return [Peddler::XMLParser]
@@ -21,8 +21,6 @@ module MWS
       def list_financial_events(opts = {})
         operation('ListFinancialEvents')
           .add(opts)
-          .structure!('AmazonOrderId', 'Id')
-          .structure!('FinancialEventGroupId', 'Id')
 
         run
       end
